@@ -1,4 +1,4 @@
-use nalgebra::{Vector2, zero};
+use na::{Vector2, zero};
 
 use std::fmt::{Debug, Formatter, Result as FmtResult};
 

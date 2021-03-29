@@ -2,7 +2,9 @@
 
 pub mod collider;
 
-use nalgebra::Vector2;
+pub extern crate nalgebra as na;
+
+use na::Vector2;
 
 pub trait Polygon 
 where Self: Sized {

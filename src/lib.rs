@@ -12,7 +12,7 @@ where Self: Sized {
 
     fn overlap<T>(&self, other: &T) -> bool
     where T: Polygon {
-        axis(self, other)
+        axis(self).chain(axis(other))
             .all(|axis| {
                 // do sat for each axis
                 let self_proj = Projection::project(&axis, self);
@@ -23,12 +23,7 @@ where Self: Sized {
     }
 }
 
-fn axis<'a, T, U>(lhs: &'a T, rhs: &'a U) -> impl Iterator<Item = Vector2::<f64>> + 'a
-where T: Polygon, U: Polygon {
-    axis_single(lhs).chain(axis_single(rhs))
-}
-
-fn axis_single<'a, T>(polygon: &'a T) -> impl Iterator<Item = Vector2::<f64>> + 'a
+fn axis<'a, T>(polygon: &'a T) -> impl Iterator<Item = Vector2::<f64>> + 'a
 where T: Polygon {
     let verts = polygon.vertices().into_iter();
 

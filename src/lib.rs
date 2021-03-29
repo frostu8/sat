@@ -1,4 +1,14 @@
 //! Separating Axis Theorem collision detection.
+//!
+//! ```
+//! use sat::collider::BoxCollider;
+//! use sat::Polygon as _;
+//!
+//! let collider1 = BoxCollider::new(0., 0., 1., 2.);
+//! let collider2 = BoxCollider::new(0.5, 0.5, 1., 1.);
+//!
+//! assert!(collider1.overlap(&collider2));
+//! ```
 
 pub mod collider;
 

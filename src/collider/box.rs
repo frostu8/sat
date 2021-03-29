@@ -4,6 +4,7 @@ use std::fmt::{Debug, Formatter, Result as FmtResult};
 
 use crate::Polygon;
 
+/// A [`BoxCollider`] is an upright rectangle in 2D space.
 pub struct BoxCollider {
     origin: Vector2::<f64>,
     size: Vector2::<f64>,

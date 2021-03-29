@@ -6,10 +6,12 @@ pub extern crate nalgebra as na;
 
 use na::Vector2;
 
+/// The [`Polygon`] trait abstracts structs to the SAT algorithm.
 pub trait Polygon 
 where Self: Sized {
     fn vertices(&self) -> &[Vector2::<f64>];
 
+    /// Tests if two polygons are overlapping (colliding).
     fn overlap<T>(&self, other: &T) -> bool
     where T: Polygon {
         axis(self).chain(axis(other))
@@ -32,6 +34,7 @@ where T: Polygon {
         .map(|v| Vector2::new(-v.y, v.x))
 }
 
+/// A projection of a shape on an axis.
 pub struct Projection {
     axis: Vector2::<f64>,
     pub min: f64,
@@ -57,10 +60,12 @@ impl Projection {
         self
     }
 
+    /// Tests if two projections are overlapping.
     pub fn overlap(&self, other: &Projection) -> bool {
         self.max > other.min && self.min < other.max
     }
 
+    /// Projects a polygon on a given axis.
     pub fn project<T>(axis: &Vector2::<f64>, polygon: &T) -> Projection
     where T: Polygon {
         let vertices = polygon.vertices();

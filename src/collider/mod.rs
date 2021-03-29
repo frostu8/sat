@@ -1,3 +1,3 @@
-mod box;
+mod box_collider;
 
-pub use box::BoxCollider;
+pub use box_collider::BoxCollider;

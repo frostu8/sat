@@ -7,6 +7,9 @@ pub extern crate nalgebra as na;
 use na::Vector2;
 
 /// The [`Polygon`] trait abstracts structs to the SAT algorithm.
+///
+/// Anyting implementing this trait must return a convex polygon in
+/// [`Polygon::vertices`]. Concave shapes must be broken into convex ones.
 pub trait Polygon 
 where Self: Sized {
     fn vertices(&self) -> &[Vector2::<f64>];
